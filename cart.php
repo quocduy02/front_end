@@ -1,3 +1,48 @@
+<?php
+session_start();
+    if(!isset($_SESSION['cart'])){
+        $_SESSION['cart'] = [];
+    }
+    if(isset($_POST['submit'])){
+        //array(4) { ["nameproduct"]=> string(22) "Áo đá bóng MU 2022" ["price"]=> string(6) "199999" ["image"]=> string(13) "product-1.ipg" ["submit"]=> string(0) "" }
+        $product = [$_POST['nameproduct'], $_POST['price'], $_POST['image']];
+        $_SESSION['cart'][] = $product;
+        var_dump($_SESSION['cart']);
+    }
+    //neu 2 sp dc add thi tang tong
+    function pushToPage(){
+        if(isset($_SESSION['cart'])){
+            for($i = 0; $i < sizeof($_SESSION['cart']); $i++){
+
+                echo $_SESSION['cart'][$i][0]."<br>";//ten
+                echo $_SESSION['cart'][$i][1]."<br>";//gia
+                echo $_SESSION['cart'][$i][2]."<br>";//hinh
+                if($_SESSION['cart'][$i][2] == $_SESSION['cart'][$i][2]){
+                    $count++;
+                }
+                echo "<td class='align-middle'><img src=".$_SESSION['cart'][$i][2]." style='width: 50px;'>".$_SESSION['cart'][$i][0]."</td>
+                <td class='align-middle'>".$_SESSION['cart'][$i][1]."đ</td>
+                <td class='align-middle'>
+                    <div class='input-group quantity mx-auto' style='width: 100px;'>
+                        <div class='input-group-btn'>
+                            <button class='btn btn-sm btn-primary btn-minus' >
+                            <i class='fa fa-minus'></i>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control form-control-sm bg-secondary text-center' value=".$count.">
+                        <div class='input-group-btn'>
+                            <button class='btn btn-sm btn-primary btn-plus'>
+                                <i class='fa fa-plus'></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+                <td class='align-middle'>199.000đ</td>
+                <td class='align-middle'><button class='btn btn-sm btn-primary'><i class='fa fa-times'></i></button></td>";
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,7 +222,10 @@
                     <tbody class="align-middle">
                         <!--Display product-->
                         <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Áo bóng đá MU 2022</td>
+                            <?php
+                                pushToPage();
+                            ?>
+                            <!-- <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Áo bóng đá MU 2022</td>
                             <td class="align-middle">$199.000đ</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -195,30 +243,8 @@
                                 </div>
                             </td>
                             <td class="align-middle">199.000đ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td> -->
                         </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Áo đá bóng Liverpoll 2022</td>
-                            <td class="align-middle">199.000đ</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">199.000đ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-    
                     </tbody>
                 </table>
             </div>
