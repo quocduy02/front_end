@@ -293,7 +293,7 @@
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <form action="">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Nhập tên sản phẩm ...">
+                                    <input type="text"  onkeyup="search_cart()" id="wv" class="form-control" placeholder="Nhập tên sản phẩm ...">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent text-primary">
                                             <i class="fa fa-search"></i>
@@ -314,6 +314,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--Product-->
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
@@ -579,6 +580,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
