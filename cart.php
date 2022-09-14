@@ -23,35 +23,39 @@ session_start();
     //neu 2 sp dc add thi tang tong
     function pushToPage(){
         $leght = sizeof($_SESSION['cart']);
+
         if(isset($_SESSION['cart'])){
             
             for($i = 0; $i < $leght; $i++){
-                echo $_SESSION['cart'][$i][0]."<br>";//ten
-                echo $_SESSION['cart'][$i][1]."<br>";//gia
-                echo $_SESSION['cart'][$i][2]."<br>";//hinh
+                // echo $_SESSION['cart'][$i][0]."<br>";//ten
+                // echo $_SESSION['cart'][$i][1]."<br>";//gia
+                // echo $_SESSION['cart'][$i][2]."<br>";//hinh
                 echo "<tr> <td class='align-middle'><img src=".$_SESSION['cart'][$i][2]." style='width: 50px;'>".$_SESSION['cart'][$i][0]."</td>
                 <td class='align-middle'>".$_SESSION['cart'][$i][1]."đ</td>
                 <td class='align-middle'>
                     <div class='input-group quantity mx-auto' style='width: 100px;'>
                         <div class='input-group-btn'>
                             <button class='btn btn-sm btn-primary btn-minus' >
-                            <i class='fa fa-minus'></i>
+                            <i onmouseenter='updatePrice()' class='fa fa-minus'></i>
                             </button>
                         </div>
                         <input type='text' class='form-control form-control-sm bg-secondary text-center' value='1'>
                         <div class='input-group-btn'>
                             <button class='btn btn-sm btn-primary btn-plus'>
-                                <i class='fa fa-plus'></i>
+                                <i onmouseenter='updatePrice()' class='fa fa-plus'></i>
                             </button>
                         </div>
                     </div>
                 </td>
-                <td class='align-middle'>199.000đ</td>
-                <td class='align-middle'><button class='btn btn-sm btn-primary'><i class='fa fa-times'></i></button></td></tr>";
+                <td id='disPr' class=' align-middle'>199.000đ</td>
+                <td class='align-middle'><button onclick='onAction()' class='choose btn btn-sm btn-primary'><i class='fa fa-times'></i></button></td></tr>";
             }
         }
      }//function
     //session_destroy();
+    function sumprice(){
+        echo $sum =sizeof($_SESSION['cart'])*199999+20000;
+    }
     
 ?>
 <!DOCTYPE html>
@@ -235,7 +239,6 @@ session_start();
                         <tr>
                             <?php
                                 pushToPage();
-                                
                             ?>
                             <!-- <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Áo bóng đá MU 2022</td>
                             <td class="align-middle">$199.000đ</td>
@@ -254,8 +257,8 @@ session_start();
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">199.000đ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td> -->
+                            <td id='price-sum-all' value='199000' class="align-middle">199.000đ</td>
+                            <td class="align-middle"><button type="submit" name="del" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td> -->
                         </tr>
                     </tbody>
                 </table>
@@ -276,7 +279,7 @@ session_start();
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Giá</h6>
-                            <h6 class="font-weight-medium">398.000đ</h6>
+                            <h6 class="font-weight-medium"><?php sumprice();?>đ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Phí Vận Chuyển</h6>
@@ -286,7 +289,7 @@ session_start();
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Tổng tiền</h5>
-                            <h5 class="font-weight-bold">418.000đ</h5>
+                            <h5 class="font-weight-bold"><?php sumprice();?> đ</h5>
                         </div>
                         <button class="btn btn-block btn-primary my-3 py-3">Kiểm tra</button>
                     </div>
@@ -378,6 +381,7 @@ session_start();
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
